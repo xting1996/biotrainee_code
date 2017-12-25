@@ -1,4 +1,5 @@
 # fastq_analysis_tool
+```python
 #! /bin/python/
 # encoding = utf-8
 """
@@ -143,5 +144,5 @@ def main(args):
 		gc_ratio(filename)
 if __name__ == '__main__':
 	main(args)
-
+```
 
