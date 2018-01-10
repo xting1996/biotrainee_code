@@ -1,0 +1,30 @@
+# exon_length
+
+#! /bin/python
+#import module
+import re
+import os
+length = 0
+lt=[]
+#
+os.chdir('/home/liuzh/gpfs/zhangxt/practice')
+with open ('CCDS.current.txt','rt') as f:
+	for lines in f:
+		if lines.startswith("#"):
+			continue
+		line = lines.strip( )
+		lst = line.split("\t")
+		if lst[-2] == "-":
+			continue
+		exons =re.sub("\[|\]","",lst[-2])
+		exons = exons.split(',')
+		for exon in exons:
+			lt.append(exon)
+lt=set(lt)
+for i in lt:
+	start = int(i.split('-')[0])
+	end = int(i.split('-')[1])
+	length += (end-start)
+print(length)
+
+
