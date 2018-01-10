@@ -1,0 +1,60 @@
+# NGC
+chr:N% GC%
+#### No.1
+```python
+#! /bin/python
+import pysam
+import os
+os.chdir("/home/liuzh/gpfs/zhangxt/practice")
+hg19 = pysam.FastaFile("hg19.fa")
+for chr in hg19.references:
+	seq = hg19.fetch(chr)
+	seqLen = len(seq)
+	N = seq.count("N")
+	GC = seq.count("G")+seq.count("C")+seq.count("g")+seq.count("c")
+	print(chr,"N%","%.2f"%(N/seqLen),"GC%","%.2f"%(GC/(seqLen-N)))
+
+```
+```
+#说明： pysam module
+pwork with SAM/BAM/VCF/BCF/BED/GFF/GTF/FASTA/FASTQ files as well as access to the command line functionality of the samtools and bcftools packages.
+references:build *.fai file to quickly read
+fetch:get some region
+```
+#### No.2
+```python
+import sys
+import time
+time1 =time.clock()
+args = sys.argv
+fp = open(args[1],"r")
+sum_atgc = {}
+bases = ["A","T","G","C","N"]
+
+for line in fp:
+	if line.startswith(">"):
+		chr_id = line[1:]
+		sum_atgc[chr_id] = {}
+		for base in bases:
+			sum_atgc[chr_id][base] = 0
+		
+	else:
+		line = line.upper()
+		for base in bases:
+			sum_atgc[chr_id][base] += line.count(base)
+for chr_id,count_atgc in sum_atgc.items():
+	print(chr_id)
+	GC = count_atgc["G"]+count_atgc["C"]
+	N = count_atgc["N"]
+	seqLen = sum(count_atgc.values())
+	print("sum:","%s"%(sum(count_atgc.values())))
+	print("GC%:","%.2f"%(GC*1.0/seqLen))
+	print("N%:","%.2f"%(N*1.0/seqLen))
+fp.close()
+time2 = time.clock()
+print(time2-time1)
+```
+```python
+#buffer:to read fastly
+
+```
