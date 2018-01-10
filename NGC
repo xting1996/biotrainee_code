@@ -1,7 +1,7 @@
 # NGC
 chr:N% GC%
+
 #### No.1
-```
 #! /bin/python
 import pysam
 import os
@@ -54,4 +54,4 @@ print(time2-time1)
 
 #buffer:to read fastly
 
-```
+
