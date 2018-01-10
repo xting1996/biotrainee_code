@@ -1,7 +1,7 @@
 # NGC
 chr:N% GC%
 #### No.1
-```python
+
 #! /bin/python
 import pysam
 import os
@@ -14,15 +14,13 @@ for chr in hg19.references:
 	GC = seq.count("G")+seq.count("C")+seq.count("g")+seq.count("c")
 	print(chr,"N%","%.2f"%(N/seqLen),"GC%","%.2f"%(GC/(seqLen-N)))
 
-```
-```
-#说明： pysam module
+#pysam module
 pwork with SAM/BAM/VCF/BCF/BED/GFF/GTF/FASTA/FASTQ files as well as access to the command line functionality of the samtools and bcftools packages.
 references:build *.fai file to quickly read
 fetch:get some region
-```
+
 #### No.2
-```python
+
 import sys
 import time
 time1 =time.clock()
@@ -53,8 +51,6 @@ for chr_id,count_atgc in sum_atgc.items():
 fp.close()
 time2 = time.clock()
 print(time2-time1)
-```
-```python
+
 #buffer:to read fastly
 
-```
